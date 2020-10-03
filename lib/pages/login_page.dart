@@ -1,5 +1,6 @@
 import 'package:chat_flutter_socket/helpers/mostrar_alerta.dart';
 import 'package:chat_flutter_socket/services/auth_service.dart';
+import 'package:chat_flutter_socket/services/socket_service.dart';
 import 'package:chat_flutter_socket/widgets/boton_azul.dart';
 import 'package:chat_flutter_socket/widgets/custom_input.dart';
 import 'package:chat_flutter_socket/widgets/labels.dart';
@@ -56,6 +57,7 @@ class __FormState extends State<_Form> {
   @override
   Widget build(BuildContext context) {
     final authService = Provider.of<AuthService>(context);
+    final socketService = Provider.of<SocketService>(context);
 
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 50),
@@ -83,6 +85,7 @@ class __FormState extends State<_Form> {
                           emailCtrl.text.trim(), passCtrl.text.trim());
 
                       if (loginOk) {
+                        socketService.connect();
                         Navigator.pushReplacementNamed(context, 'usuarios');
                       } else {
                         mostrarAlerta(context, 'Login incorrecto',

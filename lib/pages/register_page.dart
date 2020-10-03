@@ -80,7 +80,7 @@ class __FormState extends State<_Form> {
               textController: passCtrl),
           BotonAzul(
               text: 'Registrarse',
-              onPressed: authService.registrado
+              onPressed: authService.autenticando
                   ? null
                   : () async {
                       FocusScope.of(context).unfocus();
